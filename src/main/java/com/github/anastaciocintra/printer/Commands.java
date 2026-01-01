@@ -24,6 +24,9 @@ public interface Commands {
     /** Escape */
     int ESC = 27;
 
+    /** File separator */
+    int FS = 28;
+
     /** Group separator */
     int GS = 29;
 

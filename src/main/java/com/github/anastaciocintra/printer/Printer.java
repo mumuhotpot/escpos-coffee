@@ -8,6 +8,7 @@ import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -30,6 +31,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
 
     private OutputStream outputStream;
     private Style defaultStyle;
+    private Charset charset;
 
     /**
      * Creates an instance based on outputStream.
@@ -40,6 +42,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
     public Printer(OutputStream outputStream) {
         this.outputStream = outputStream;
         this.defaultStyle = new Style();
+        this.charset = StandardCharsets.UTF_8;
     }
 
     /**
@@ -102,6 +105,26 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      */
     public Style getDefaultStyle() {
         return defaultStyle;
+    }
+
+    /**
+     * Sets charset to encode message.
+     *
+     * @param charset to encode the message.
+     * @return this object
+     */
+    public Printer setCharset(Charset charset) {
+        this.charset = charset;
+        return this;
+    }
+
+    /**
+     * Gets actual charset to encode message.
+     *
+     * @return actual value
+     */
+    public Charset getCharset() {
+        return charset;
     }
 
     /**
@@ -227,7 +250,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      */
     public Printer write(Style style, String text) throws IOException {
         write(getStyleCommands(style));
-        write(text.getBytes(StandardCharsets.UTF_8));
+        write(text.getBytes(charset));
         return this;
     }
 

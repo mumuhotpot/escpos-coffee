@@ -33,9 +33,8 @@ public final class EscPosPrinter extends Printer {
 
     @Override
     public Printer setChineseCharacterSupport() throws IOException {
-        write(ESC);
-        write('R');
-        write(15);
+        write(FS);
+        write('&');
         return this;
     }
 
