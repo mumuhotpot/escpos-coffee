@@ -6,6 +6,7 @@ package com.github.anastaciocintra.printer.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 import com.github.anastaciocintra.printer.Printer;
 import com.github.anastaciocintra.printer.Style;
@@ -21,13 +22,21 @@ public final class StarPrntPrinter extends Printer {
      * @param outputStream can be one file, System.out or printer...
      */
     public StarPrntPrinter(OutputStream outputStream) {
-        super(outputStream);
+        super(outputStream, StandardCharsets.UTF_8);
     }
 
     @Override
     public Printer initialize() throws IOException {
         write(ESC);
         write('@');
+        return this;
+    }
+
+    @Override
+    public Printer setLineSpacing() throws IOException {
+        write(ESC);
+        write('z');
+        write(1);
         return this;
     }
 

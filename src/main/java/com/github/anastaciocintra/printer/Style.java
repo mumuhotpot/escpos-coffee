@@ -212,6 +212,10 @@ public class Style implements Commands {
         bytes.write(fontWidth.value << 4 | fontHeight.value);
 
         bytes.write(ESC);
+        bytes.write('3');
+        bytes.write((fontHeight.value + 1) * 32 - 1);
+
+        bytes.write(ESC);
         bytes.write('E');
         bytes.write(bold ? 1 : 0);
 

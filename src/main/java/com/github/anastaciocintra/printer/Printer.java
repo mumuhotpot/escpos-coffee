@@ -9,7 +9,6 @@ import java.io.Flushable;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Write some usual commands to the OutputStream.
@@ -30,19 +29,20 @@ public abstract class Printer implements Closeable, Flushable, Commands {
     }
 
     private OutputStream outputStream;
+    private Charset defaultCharset;
     private Style defaultStyle;
-    private Charset charset;
 
     /**
      * Creates an instance based on outputStream.
      *
      * @param outputStream can be one file, System.out or printer...
+     * @param defaultCharset default charset to encode message
      * @see java.io.OutputStream
      */
-    public Printer(OutputStream outputStream) {
+    public Printer(OutputStream outputStream, Charset defaultCharset) {
         this.outputStream = outputStream;
+        this.defaultCharset = defaultCharset;
         this.defaultStyle = new Style();
-        this.charset = StandardCharsets.UTF_8;
     }
 
     /**
@@ -110,11 +110,11 @@ public abstract class Printer implements Closeable, Flushable, Commands {
     /**
      * Sets charset to encode message.
      *
-     * @param charset to encode the message.
+     * @param defaultCharset to encode the message.
      * @return this object
      */
-    public Printer setCharset(Charset charset) {
-        this.charset = charset;
+    public Printer setDefaultCharset(Charset defaultCharset) {
+        this.defaultCharset = defaultCharset;
         return this;
     }
 
@@ -123,8 +123,8 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      *
      * @return actual value
      */
-    public Charset getCharset() {
-        return charset;
+    public Charset getDefaultCharset() {
+        return defaultCharset;
     }
 
     /**
@@ -136,6 +136,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
     public Printer reset() throws IOException {
         defaultStyle.reset();
         initialize();
+        setLineSpacing();
         setChineseCharacterSupport();
         setExternalDrawerPulse();
         return this;
@@ -148,6 +149,14 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      * @throws IOException if an I/O error occurs
      */
     public abstract Printer initialize() throws IOException;
+
+    /**
+     * Sends command to set line spacing.
+     *
+     * @return this object
+     * @throws IOException if an I/O error occurs
+     */
+    public abstract Printer setLineSpacing() throws IOException;
 
     /**
      * Sends command to enable Chinese character support.
@@ -250,7 +259,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      */
     public Printer write(Style style, String text) throws IOException {
         write(getStyleCommands(style));
-        write(text.getBytes(charset));
+        write(text.getBytes(defaultCharset));
         return this;
     }
 

@@ -6,6 +6,7 @@ package com.github.anastaciocintra.printer.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 
 import com.github.anastaciocintra.printer.Printer;
 import com.github.anastaciocintra.printer.Style;
@@ -21,13 +22,22 @@ public final class EscPosPrinter extends Printer {
      * @param outputStream can be one file, System.out or printer...
      */
     public EscPosPrinter(OutputStream outputStream) {
-        super(outputStream);
+        super(outputStream, Charset.forName("GB18030"));
     }
 
     @Override
     public Printer initialize() throws IOException {
         write(ESC);
         write('@');
+        return this;
+    }
+
+    @Override
+    public Printer setLineSpacing() throws IOException {
+        write(GS);
+        write('P');
+        write(180);
+        write(180);
         return this;
     }
 
