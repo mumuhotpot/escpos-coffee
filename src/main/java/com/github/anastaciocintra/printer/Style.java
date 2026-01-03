@@ -32,11 +32,7 @@ public class Style implements Commands {
         _1(0),
         _2(1),
         _3(2),
-        _4(3),
-        _5(4),
-        _6(5),
-        _7(6),
-        _8(7);
+        _4(3);
         public int value;
 
         private FontSize(int value) {
@@ -213,7 +209,7 @@ public class Style implements Commands {
 
         bytes.write(ESC);
         bytes.write('3');
-        bytes.write((fontHeight.value + 1) * 32 - 1);
+        bytes.write((fontHeight.value + 1) * 64 - 1);
 
         bytes.write(ESC);
         bytes.write('E');
