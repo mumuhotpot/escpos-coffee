@@ -37,7 +37,7 @@ public final class EscPosPrinter extends Printer {
         write(GS);
         write('P');
         write(180);
-        write(180);
+        write(360);
         return this;
     }
 
