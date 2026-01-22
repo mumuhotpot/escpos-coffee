@@ -5,6 +5,7 @@
 package com.github.anastaciocintra.printer;
 
 import java.io.ByteArrayOutputStream;
+import com.github.anastaciocintra.printer.impl.EscPosStyleConfig;
 
 /**
  * Supply text style commands
@@ -192,11 +193,13 @@ public class Style implements Commands {
     }
 
     /**
+     * TODO move this method to the impl class
+     *
      * Gets ESC/POS commands for current style.
      *
      * @return ESC/POS commands as byte array
      */
-    public byte[] toEscPosCommands() {
+    public byte[] toEscPosCommands(EscPosStyleConfig styleConfig) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 
         bytes.write(ESC);
@@ -209,7 +212,7 @@ public class Style implements Commands {
 
         bytes.write(ESC);
         bytes.write('3');
-        bytes.write((fontHeight.value + 1) * 64 - 1);
+        bytes.write((fontHeight.value + 1) * styleConfig.getLineSpacingDot() - 1);
 
         bytes.write(ESC);
         bytes.write('E');

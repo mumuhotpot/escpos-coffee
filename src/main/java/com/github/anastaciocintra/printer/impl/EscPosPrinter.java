@@ -16,13 +16,21 @@ import com.github.anastaciocintra.printer.Style;
  */
 public final class EscPosPrinter extends Printer {
 
+    private EscPosStyleConfig styleConfig;
+
     /**
      * Creates an instance based on outputStream.
      *
      * @param outputStream can be one file, System.out or printer...
+     * @param styleConfig config related to style in ESC/POS printer
      */
-    public EscPosPrinter(OutputStream outputStream) {
+    public EscPosPrinter(OutputStream outputStream, EscPosStyleConfig styleConfig) {
         super(outputStream, Charset.forName("GB18030"));
+        this.styleConfig = styleConfig;
+    }
+
+    public EscPosPrinter(OutputStream outputStream) {
+        this(outputStream, new EscPosStyleConfig());
     }
 
     @Override
@@ -36,8 +44,8 @@ public final class EscPosPrinter extends Printer {
     public Printer setLineSpacing() throws IOException {
         write(GS);
         write('P');
-        write(180);
-        write(360);
+        write(0);
+        write(0);
         return this;
     }
 
@@ -81,7 +89,7 @@ public final class EscPosPrinter extends Printer {
 
     @Override
     protected byte[] getStyleCommands(Style style) {
-        return style.toEscPosCommands();
+        return style.toEscPosCommands(this.styleConfig);
     }
 
 }
