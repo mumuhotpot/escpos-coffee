@@ -193,6 +193,8 @@ public class Style implements Commands {
     }
 
     /**
+     * TODO move this method to the impl class
+     *
      * Gets ESC/POS commands for current style.
      *
      * @return ESC/POS commands as byte array
