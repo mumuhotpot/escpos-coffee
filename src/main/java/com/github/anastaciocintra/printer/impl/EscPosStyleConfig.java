@@ -2,7 +2,7 @@ package com.github.anastaciocintra.printer.impl;
 
 public class EscPosStyleConfig {
 
-    private int lineSpacingDot = 64;
+    private int lineSpacingDot = 56;
 
     public int getLineSpacingDot() {
         return lineSpacingDot;

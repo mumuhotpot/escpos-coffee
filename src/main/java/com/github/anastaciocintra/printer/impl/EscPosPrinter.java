@@ -63,6 +63,10 @@ public final class EscPosPrinter extends Printer {
 
     @Override
     public Printer feed(int lines) throws IOException {
+        // Set it default style, otherwise the line height would be affected by the font height in last style
+        Style defaultStyle = this.getDefaultStyle();
+        write(this.getStyleCommands(defaultStyle));
+
         write(ESC);
         write('d');
         write(lines);
