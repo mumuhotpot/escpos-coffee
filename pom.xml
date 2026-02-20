@@ -6,11 +6,7 @@
     <artifactId>escpos-coffee</artifactId>
     <version>${revision}</version>
 
-
-
-
     <packaging>jar</packaging>
-
 
     <dependencies>
         <dependency>
@@ -19,8 +15,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-
 
     <properties>
         <revision>4.1.0</revision>
@@ -43,10 +37,7 @@
         <maven-surefire.version>2.21.0</maven-surefire.version>
         <junit-platform-surefire-provider.version>1.2.0-M1</junit-platform-surefire-provider.version>
         <junit-jupiter-engine.version>5.2.0-M1</junit-jupiter-engine.version>
-
-
     </properties>
-
 
     <name>escpos-coffee</name>
     <description>
@@ -93,7 +84,6 @@
             </roles>
         </developer>
 
-
         <developer>
             <name>Derick Felix</name>
             <url>https://github.com/derickfelix</url>
@@ -119,12 +109,6 @@
         </developer>
 
     </developers>
-
-
-
-
-
-
 
     <build>
 
@@ -162,9 +146,6 @@
                 </executions>
             </plugin>
 
-
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -178,7 +159,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -202,7 +182,6 @@
 
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -220,9 +199,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
-
-
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -253,7 +229,6 @@
                 </executions>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -279,7 +254,6 @@
                 </executions>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -289,9 +263,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-
-
-
 
         </plugins>
 
@@ -314,21 +285,12 @@
         </dependencies>
     </dependencyManagement>
 
-
-
     <distributionManagement>
-
-
         <repository>
-            <id>ossrh-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/mumuhotpot/escpos-coffee</url>
         </repository>
-        <snapshotRepository>
-            <id>ossrh-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-
     </distributionManagement>
-
 
 </project>
