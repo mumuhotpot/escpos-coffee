@@ -18,11 +18,9 @@ jobs:
       with:
         java-version: '8'
         distribution: 'temurin'
-        server-id: github
-        settings-path: ${{ github.workspace }}/.ci
         cache: maven
 
     - name: Build with Maven
-      run: mvn -B clean deploy --file pom.xml
+      run: mvn -B clean deploy --file pom.xml -s $GITHUB_WORKSPACE/.ci/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
