@@ -4,29 +4,10 @@
                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>ossrh-staging</id>
-            <username>${env.SONATYPE_USERNAME}</username>
-            <password>${env.SONATYPE_PASSWORD}</password>
-        </server>
-        <server>
-            <id>ossrh-snapshots</id>
-            <username>${env.SONATYPE_USERNAME}</username>
-            <password>${env.SONATYPE_PASSWORD}</password>
+            <id>github</id>
+            <username>${env.GITHUB_ACTOR}</username>
+            <password>${env.GITHUB_TOKEN}</password>
         </server>
     </servers>
-    <profiles>
-        <profile>
-            <id>ossrh</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <gpg.executable>gpg</gpg.executable>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
-        </profile>
-    </profiles>
 </settings>
 
-<!--        #    gpg &#45;&#45;export-ownertrust | base64 -w 0 >>> GPG_OWNERTRUST-->
-<!--        #    ppg -a &#45;&#45;export-secret-keys anastaciocintra@gmail.com |base64 -w 0 >>> GPG_SECRET_KEYS-->
