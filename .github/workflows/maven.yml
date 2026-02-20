@@ -19,7 +19,7 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         server-id: github
-        settings-path: ${{ github.workspace }}
+        settings-path: ${{ github.workspace }}/.ci
         cache: maven
 
     - name: Build with Maven
