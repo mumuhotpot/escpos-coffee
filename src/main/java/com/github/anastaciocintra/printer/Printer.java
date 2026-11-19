@@ -139,6 +139,7 @@ public abstract class Printer implements Closeable, Flushable, Commands {
         setLineSpacing();
         setChineseCharacterSupport();
         setExternalDrawerPulse();
+        setExternalBuzzerPulse();
         return this;
     }
 
@@ -175,6 +176,14 @@ public abstract class Printer implements Closeable, Flushable, Commands {
     public abstract Printer setExternalDrawerPulse() throws IOException;
 
     /**
+     * Sends command to set external buzzer pulse timing.
+     *
+     * @return this object
+     * @throws IOException if an I/O error occurs
+     */
+    public abstract Printer setExternalBuzzerPulse() throws IOException;
+
+    /**
      * Feeds the specified number of lines.
      *
      * @param lines number of lines to feed
@@ -199,6 +208,14 @@ public abstract class Printer implements Closeable, Flushable, Commands {
      * @throws IOException if an I/O error occurs
      */
     public abstract Printer pulse() throws IOException;
+
+    /**
+     * Sends pulse to sound the buzzer.
+     *
+     * @return this object
+     * @throws IOException if an I/O error occurs
+     */
+    public abstract Printer buzz() throws IOException;
 
     /**
      * Gets the style commands to be sent to printer.

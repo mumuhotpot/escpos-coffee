@@ -63,6 +63,18 @@ public final class StarPrntPrinter extends Printer {
     }
 
     @Override
+    public Printer setExternalBuzzerPulse() throws IOException {
+        write(ESC);
+        write(GS);
+        write(EM);
+        write(DC1);
+        write(1);
+        write(10);  // Buzz on for 20 * n1 ms
+        write(10);  // Buzz off for 20 * n2 ms
+        return this;
+    }
+
+    @Override
     public Printer feed(int lines) throws IOException {
         write(ESC);
         write('a');
@@ -81,6 +93,18 @@ public final class StarPrntPrinter extends Printer {
     @Override
     public Printer pulse() throws IOException {
         write(BEL);
+        return this;
+    }
+
+    @Override
+    public Printer buzz() throws IOException {
+        write(ESC);
+        write(GS);
+        write(EM);
+        write(DC2);
+        write(1);
+        write(3);  // Number of beeps
+        write(0);
         return this;
     }
 

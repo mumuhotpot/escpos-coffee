@@ -21,6 +21,15 @@ public interface Commands {
     /** Line feed */
     int LF = 10;
 
+    /** Device control 1 */
+    int DC1 = 17;
+
+    /** Device control 2 */
+    int DC2 = 18;
+
+    /** End of medium */
+    int EM = 25;
+
     /** Escape */
     int ESC = 27;
 

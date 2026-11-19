@@ -62,6 +62,11 @@ public final class EscPosPrinter extends Printer {
     }
 
     @Override
+    public Printer setExternalBuzzerPulse() throws IOException {
+        return this;
+    }
+
+    @Override
     public Printer feed(int lines) throws IOException {
         // Set it default style, otherwise the line height would be affected by the font height in last style
         Style defaultStyle = this.getDefaultStyle();
@@ -88,6 +93,15 @@ public final class EscPosPrinter extends Printer {
         write(0);
         write(16);
         write(20);
+        return this;
+    }
+
+    @Override
+    public Printer buzz() throws IOException {
+        write(ESC);
+        write('B');
+        write(3);  // Number of beeps
+        write(9);  // Buzz for 100 * t ms
         return this;
     }
 
